@@ -1,0 +1,23 @@
+How to predict the test image?
+
+1. Copy the trained VGG and Res models into "./Deploys/" (Camelyon_VGG_L1.caffemodel, Camelyon_Res_L0.caffemodel)
+
+2. python VGGResDetecter_001to130.py
+    The detail of this procedure can be divided into following 3 steps:
+        (1) Preprocessing:
+                Extract large ROIs of tissues from WSI on level-4 rapidly;
+                Extract candidate-patches from large ROIs on level-1, and generate the coordinates of them;
+                Get the coordinates of candidate-patches and write them into "./cache/coorTxtDir/Test_XXX_coor.txt".
+        (2) VGG-16 Preliminary Prediction:
+                Read the coordinates from "./cache/coorTxtDir/Test_XXX_coor.txt", restore the candidate-patches (level-1) for VGG prediction.
+                Predict the candidate-patches by VGG-16 Net. Generate the prediction results and write them into "./cache/VGGcsvDir/Test_XXX.csv"
+        (3) ResNet-152 Finetuning Prediction: 
+                Read the coordinates from "./cache/VGGcsvDir/Test_XXX.csv", restore the candidates-pathes (level-0) for ResNet prediction.
+                Predict the candidate-patches by ResNet-152 to generate preliminary prediction results. And then, re-predict the small regions(<=4 pixels) by ?(voting?). PS: This step helps to suppress the probability of small outliers
+                Write the ResNet results into "./cache/RescsvDir/Test_XXX.csv".
+
+3. python ClusterTest_V2.01.py
+    This procedure will find the components to cluster the scattered pixels together. After that, the final results will be written into "./Results/Locations/Test_XXX.csv"
+
+4. python Evaluation_Classification.py 
+    This procedure estimates the probability of WSI by max-pooling stategy. The result will be written into "./Results/Classification/ClassifyResults.csv"

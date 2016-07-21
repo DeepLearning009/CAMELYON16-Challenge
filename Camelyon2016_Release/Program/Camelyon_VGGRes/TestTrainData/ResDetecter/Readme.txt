@@ -1,0 +1,15 @@
+This Method is composed by two parts:
+    1. Predict every VGG results by center patch firstly.
+    2. Recomputer small patches by taking "4 corners and 1 center" patches to get a weighted average prediction
+
+1. Copy the VGG prediction results into "./VGGcsvDir"
+   Copy the trained Res-model into "./Deploys/Camelyon_Res_L0.caffemodel"
+
+2. python ResTool_SlideTesterCrossLv_001_110.py
+    The Residual predicting results will be generated into "./ResResults/Tumor_XXX.csv"
+
+3. python ClusterTest_V2.01.py
+    It will read the results from "./ResResults/Tumor_XXX.csv" to generate the final clustered results into "./RefinedResults/Tumor_XXX.csv"
+
+4. python Evalutation_FROC.py
+    Evaluate the final result of location.
