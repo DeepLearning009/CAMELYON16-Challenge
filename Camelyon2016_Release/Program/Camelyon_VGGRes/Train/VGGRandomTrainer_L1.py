@@ -30,7 +30,6 @@ class CrossSlideTrainer:
         self._OV_step_size = self._OV_win_size
         self._avg_list = [[135,85,164],[155,100,135],[165,125,151],[187,155,180],[188,130,160],[145,88,122],[110,75,115],[67,28,120],[100,47,140],[100, 64, 110]]
         
-        self._OV_node_list = []
         self._pos_coor_list = []
         self._neg_coor_list = []
     
@@ -228,9 +227,9 @@ class CrossSlideTrainer:
 ####################### Show the Overview Image########################            
             width, height = slide.level_dimensions[ self._OV_level ]
             show_Result = np.zeros((height, width, 3))
-            for i in xrange(len(self._OV_node_list)):
-                OV_WCoor = self._OV_node_list[i][0]
-                OV_HCoor = self._OV_node_list[i][1]
+            for i in xrange(len(OV_node_list)):
+                OV_WCoor = OV_node_list[i][0]
+                OV_HCoor = OV_node_list[i][1]
                 show_Result[ int(OV_HCoor/2**self._OV_level+0.5), int(OV_WCoor/2**self._OV_level+0.5), :] = 255
            
             slideFileName = slidePath.split('/')[-1]
