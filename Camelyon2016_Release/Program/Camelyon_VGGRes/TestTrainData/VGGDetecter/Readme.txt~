@@ -1,7 +1,0 @@
-1. Copy the trained VGG-model into "./Deploys/Camelyon_VGG_L1.caffemodel" 
-
-2. python VGGTool_SlideTestCrossLv_001_110.py
-    This procedure will generate the VGG prediction results with accuracy reports. All the cache-files and VGG results will be generated into VGGResults.
-
-3. python Evaluation_FROC.py
-    Generate FROC curve to make sure the sensitivity in the VGG stage.
