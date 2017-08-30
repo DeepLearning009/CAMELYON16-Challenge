@@ -121,7 +121,7 @@ class CrossTxtMaker:
                         t_iter = 0
                         print "    Overview complete: %.2f %%" %(m_iter*100.0/total)
                         
-                    OVslideTile = self._GetPatch(slide, w, h, OVwindowShape, self._workingLevel)           
+                    OVslideTile = self._GetPatch(slide, w, h, OVwindowShape, self._OV_level)           
                     r,g,b,a = cv2.split(OVslideTile)
                     OVslideTile = cv2.merge([r,g,b])
                     OVslideTile = cv2.resize(OVslideTile,(224,224)).astype('float32')
