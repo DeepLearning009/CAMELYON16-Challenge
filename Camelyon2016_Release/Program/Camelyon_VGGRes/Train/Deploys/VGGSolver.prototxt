@@ -1,4 +1,4 @@
-net: "./VGG_16_train_val.prototxt"
+net: "./Deploys/VGG_16_train_val.prototxt"
 base_lr: 0.00001
 lr_policy: "step"
 gamma: 0.5
@@ -7,4 +7,4 @@ display: 20
 max_iter: 45000000
 momentum: 0.9
 weight_decay: 0.0005
-solver_mode: GPU
+solver_mode: CPU

@@ -6,8 +6,8 @@ Created on 25 Apr 2016
 import sys
 import os
 #from boto.sdb.db.test_db import test_list
-caffe_root = '/home/hjlin/caffe-master/'
-sys.path.insert(0,caffe_root+'python')
+caffe_root = '/Users/daniel/caffe/'
+sys.path.insert(0, caffe_root + 'python')
 import caffe
 import cv2
 import numpy as np
@@ -543,14 +543,14 @@ if __name__ == '__main__':
     tester.ResetTFPN()
     tester.InitializeDetecter()
 
-    Ex_list = [15, 18, 20, 29, 33, 44, 46, 51, 54, 55, 79, 92, 95]
+    Ex_list = [15, 18, 20, 29, 33, 44, 46, 51, 52, 54, 55, 79, 92, 95]
     Test_list = [1, 10, 17, 24, 28, 30, 97]
     #T_list = [49 ]
 
     for i in xrange(1,111):#T_list:
         if True:#i not in Ex_list and i not in Test_list:
-            slidePath = "../../../../2016ISBI/CAMELYON16/TrainingData/Train_Tumor/Tumor_%03d.tif" %i
-            maskPath =  "../../../../2016ISBI/CAMELYON16/TrainingData/Ground_Truth/Mask/Tumor_%03d_Mask.tif"%i
+            slidePath = "../../../../../DataSet/TrainingData/Train_Tumor/Tumor_%03d.tif" %i
+            maskPath =  "../../../../../DataSet/TrainingData/Ground_Truth/Mask/Tumor_%03d_Mask.tif"%i
             slideName = slidePath.split("/")[-1]
             print "Start Predicting: %s" %slideName
             tester.DetectWithMask(slidePath, maskPath, DbatchSize = 800)

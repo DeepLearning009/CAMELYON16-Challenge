@@ -6,8 +6,8 @@ Created on 12 May 2016
 import sys
 import os
 import random
-caffe_root = '/home/hjlin/caffe-master/'
-sys.path.insert(0,caffe_root+'python')
+caffe_root = '/Users/daniel/caffe/'
+sys.path.insert(0, caffe_root + 'python')
 import caffe
 import cv2
 import numpy as np
@@ -139,6 +139,7 @@ class CrossSlideTrainer:
         else:
             #calculate the coordinate list and save to .txt
             print "Begin Overview Image Calculation..."
+            print self._outputDir + "/" + dataName + "_coor.txt"
             m_iter = 0
             t_iter = 0
             total = (float(zero_level_size[0])/OVstep) * (float(zero_level_size[1])/OVstep)
@@ -540,9 +541,8 @@ if __name__ == '__main__':
     trainer.SetSolverPath(solverPath)
     trainer.SetWeightPath(weightPath)
     trainer.SetOutputDir(outputDir)
-    trainer.InitializeTrainer()
-
     trainer.SetNetDeployFile(NET_FILE)
+    trainer.InitializeTrainer()
 
     Ex_list = [15, 18, 20, 29, 33, 44, 46, 51, 54, 55, 79, 92, 95]
     Test_list = [1, 10, 17, 24, 28, 30, 97, 110]
@@ -551,8 +551,11 @@ if __name__ == '__main__':
     for i in xrange(1,111):
     #for i in train_list:
         if i not in Ex_list :#and i not in Test_list:
-            slidePath = "../../2016ISBI/CAMELYON16/TrainingData/Train_Tumor/Tumor_%03d.tif" %i
-            maskPath =  "../../2016ISBI/CAMELYON16/TrainingData/Ground_Truth/Mask/Tumor_%03d_Mask.tif"%i
+            if i >= 71:
+                slidePath = "../../../../DataSet/TrainingData/Train_Tumor/tumor_%03d.tif" %i
+            else:
+                slidePath = "../../../../DataSet/TrainingData/Train_Tumor/Tumor_%03d.tif" %i
+            maskPath =  "../../../../DataSet/TrainingData/Ground_Truth/Mask/Tumor_%03d_Mask.tif"%i
             trainer.AddDataset(slidePath, maskPath)
     for i in xrange(1000):
         trainer.Train(200, 200, 3)

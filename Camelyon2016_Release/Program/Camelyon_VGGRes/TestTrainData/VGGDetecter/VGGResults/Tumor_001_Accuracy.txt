@@ -1,4 +1,4 @@
-Accuracy: 0.962171
-TFPN Accuracy: 0.182446
-Tumour(Positive) Accuracy: 0.735376
-Background(Negtive) Accuracy: 0.964804
+Accuracy: 0.950786
+TFPN Accuracy: 0.099768
+Tumour(Positive) Accuracy: 0.796296
+Background(Negtive) Accuracy: 0.951852
